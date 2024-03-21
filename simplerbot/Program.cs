@@ -1,6 +1,7 @@
 ﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.Entities;
+using simplerbot.Commands;
 
 namespace simplerbot;
 
@@ -27,6 +28,8 @@ public class Program
         
         var commandsConfig = client.UseCommandsNext(commands);
         var activity = new DiscordActivity($"{json.Prefix}help to get started", ActivityType.Watching);
+        
+        commandsConfig.RegisterCommands<Moderation>();
         
         await client.ConnectAsync(activity);
         await Task.Delay(-1);
